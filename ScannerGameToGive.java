@@ -5,16 +5,17 @@ public class ScannerGame {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("I can tell you if its a weekday or weekend.");
-		dayOfWeek(sc);
+		// System.out.println("I can tell you if its a weekday or weekend.");
+		// dayOfWeek(sc);
 
 		System.out.println("I can tell you what season it is.");
-		dayOfWeek(sc);
+		whichMonth(sc);
 
-		System.out.println("Good job! Now let's play a number guessing game!");
-		numberGuesser(sc);
+		// System.out.println("Good job! Now let's play a number guessing game!");
+		// numberGuesser(sc);
 	}
 
+	// This example shows using break statements for each case
 	public static void dayOfWeek(Scanner sc) {
 		System.out.println("Please input a number 1-7 where 1 is monday and 7 is sunday and I'll tell you if its a weekday or weekend.");
 		int inputNum = sc.nextInt();
@@ -48,6 +49,7 @@ public class ScannerGame {
 		}
 	}
 
+	// This shows one way to use the cascading effect in switch statements
 	public static void whichMonth(Scanner sc) {
 		System.out.println("Please input a number 1-12 and I'll tell you what season it is.");
 		int inputNum = sc.nextInt();
@@ -72,13 +74,15 @@ public class ScannerGame {
 			case 8:
 			case 9:
 			case 10:
-				System.out.println("This is a weekend");
+				System.out.println("This is a month during the fall/autumn.");
 				break;
 			default:
 				System.out.println("Whoops you did not give a valid month in a year.");
 				return;
+		}
 	}
 
+	// This has examples of While loops and for loops inside of them, as well of if else
 	public static void numberGuesser(Scanner sc) {
 
 		// Initial Introduction
