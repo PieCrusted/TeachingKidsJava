@@ -5,14 +5,14 @@ public class ScannerGame {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		// System.out.println("I can tell you if its a weekday or weekend.");
-		// dayOfWeek(sc);
+		System.out.println("I can tell you if its a weekday or weekend.");
+		dayOfWeek(sc);
 
 		System.out.println("I can tell you what season it is.");
 		whichMonth(sc);
 
-		// System.out.println("Good job! Now let's play a number guessing game!");
-		// numberGuesser(sc);
+		System.out.println("Good job! Now let's play a number guessing game!");
+		numberGuesser(sc);
 	}
 
 	// This example shows using break statements for each case
