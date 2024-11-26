@@ -19,6 +19,7 @@ public class ScannerGame {
 	public static void dayOfWeek(Scanner sc) {
 		System.out.println("Please input a number 1-7 where 1 is monday and 7 is sunday and I'll tell you if its a weekday or weekend.");
 		int inputNum = sc.nextInt();
+		sc.nextLine(); // Consume the leftover newline character
 
 		// ***************This is an example of a case statement***************
 		switch (inputNum) {
@@ -53,6 +54,7 @@ public class ScannerGame {
 	public static void whichMonth(Scanner sc) {
 		System.out.println("Please input a number 1-12 and I'll tell you what season it is.");
 		int inputNum = sc.nextInt();
+		sc.nextLine(); // Consume the leftover newline character
 
 		// ***************This is an example of a case statement***************
 		switch (inputNum) {
@@ -100,6 +102,7 @@ public class ScannerGame {
 		System.out.println("*********************************");
 		System.out.println("Please enter an int for the largest number of the range you want from 1 to n: ");
 		int range = sc.nextInt();
+        sc.nextLine(); // Consume the leftover newline character
 
 		// Calculate the goal from 1 - range
 		int guess = 0;
@@ -112,6 +115,7 @@ public class ScannerGame {
 		while (guess != goal) {
 			System.out.print("What is your guess: ");
 			guess = sc.nextInt();
+			sc.nextLine(); // Consume the leftover newline character
 			guessList.add(guess);
 
 			if (guess < goal) {
