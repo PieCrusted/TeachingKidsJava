@@ -23,12 +23,15 @@
 ///////////////////////////////////////////////////////
 // You are not expected to handle errors, for example if the user inputted a word and 
 // not a number, it is ok for it to break.
+// You are free to use any data structure or algorithms that you know of or found
+// to accomplish this project. But generally the resources in class should be sufficient.
 
 import java.util.Scanner;
 
 public class Mini_Calculator_Project {
 	public static void main(String[] args) {
 		// Write code here
+
 		// Below is an example of prompting the user to input an int
 		Scanner sc = new Scanner(System.in);
 
