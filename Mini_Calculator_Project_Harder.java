@@ -24,6 +24,8 @@
 // 5. If the EXIT keyword was chosen, the program should end
 // 6. If a unrecognizable operation keyword is inputted (including lowercase version) print
 // a statement saying it could not recognize the operation and reprompt with the same list
+// 7. You are not expected to handle illegal operations for example if you are expecting a
+// integer, but user inputted a word, its ok if the program breaks.
 
 // You are free to use any data structure or algorithms that you know of or found
 // to accomplish this project, and we encourage to search online if needed.
