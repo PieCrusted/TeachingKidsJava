@@ -28,6 +28,7 @@ import java.util.Scanner;
 
 public class Mini_Calculator_Project_Solved {
 	private static HashMap<Integer, Integer> fiboMap = new HashMap<>();
+	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		// Write code here
@@ -35,18 +36,22 @@ public class Mini_Calculator_Project_Solved {
 		// Below is an example of prompting the user to input an int
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Please enter an int: ");
-		int a = sc.nextInt();
-		sc.nextLine(); // Consume the leftover newline character
+		// Ask user to input name (optional)
+		System.out.println("Please enter your name: ");
+		String name = sc.nextLine();
 
-		System.out.println("Please enter an int: ");
-		int b = sc.nextInt();
-		sc.nextLine(); // Consume the leftover newline character
-
+		// Rough introduction of the interface
+		printBar();
+		System.out.println("Hi " + name + " this is a mini calculator project");
+		printBar();
 
 		
-		System.out.println("You entered: " + n);
 
+	}
+
+	// Just something to make it fancy
+	public static void printBar() {
+		System.out.println("===============================================================");
 	}
 
 	/**
@@ -55,7 +60,7 @@ public class Mini_Calculator_Project_Solved {
 	public static double mathematicalFunction(int a, int b, int operation) {
 		// This example is where a switch/case statement shines, but since we didn't
 		// introduce it, I'll stick with if statements
-		if (operation < 0 || operation >= 3) {
+		if (operation < 0 || operation > 3) {
 			return 0;
 		}
 
@@ -69,7 +74,7 @@ public class Mini_Calculator_Project_Solved {
 			return a * b;
 		}
 
-		return a / b;
+		return (double) a / b;
 	}
 
 	// Multiplies using a for loop, n * (n - 1) * (n - 2) * ... * 1 = n!
@@ -88,13 +93,64 @@ public class Mini_Calculator_Project_Solved {
 
 		if (n == 1) {
 			return 1;
+		}
 
 		int factorial = 1;
-		for (int i = 1; i < n; ++i) {
+		for (int i = 1; i <= n; ++i) {
 			factorial *= i;
 		}
 
-		return factorial
+		return factorial;
+	}
+
+	// Adjusted guessing game from what we emailed them out in class
+	public static void numberGuesser(int n, int factorial, String name) {
+
+		// Start guessing game
+		printBar();
+		System.out.println("You will be guessing what " + n + "! is.");
+		printBar();
+
+		// Calculate the goal from 1 - range
+		int guess = 0;
+		int guesses = 0;
+		ArrayList<Integer> guessList = new ArrayList<>();
+
+		// Use the given factorial as the goal
+		int goal = factorial;
+
+		// Game operation
+		// We change to a do while loop, so it does the iteration once, so we can account
+		// for the goal being 0
+		do {
+			printBar();
+			System.out.print("What is your guess: ");
+			printBar();
+			guess = sc.nextInt();
+			sc.nextLine(); // Consume the leftover newline character
+			guessList.add(guess);
+
+			if (guess < goal) {
+				System.out.println("Oops you guessed too low");
+			} else {
+				System.out.println("Oops you guessed too high");
+			}
+
+			// Increment guesses
+			++guesses;
+		} while (guess != goal)
+
+		// Final results printing
+		System.out.println("Congratulations " + name + "! You correctly guessed the number " + goal);
+		System.out.println("You took " + guesses + " guesses to guess the right number!");
+
+		// Print out the list of guesses taken
+		// ***************This is an example of a for loop***************
+		System.out.println("The guesses you took were: ");
+		for (int i = 0; i < guessList.size(); ++i) {
+			System.out.print(guessList.get(i) + ", ");
+		}
+		System.out.println();
 	}
 }
 
