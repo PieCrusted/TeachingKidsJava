@@ -148,7 +148,6 @@ public class Mini_Calculator_Project {
 				System.out.println(map.toString());
 			}
 		}
-
 	}
 
 	// Fixed helper function to print the full prompt of options
