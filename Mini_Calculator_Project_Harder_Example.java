@@ -39,19 +39,19 @@ import java.util.HashMap;
 // limit to the scope of what we might teach. So will not include try catch and exception handling
 public class Mini_Calculator_Project {
 	private static HashMap<Integer, Integer> fiboMap = new HashMap<>();
+	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		// Write code here
-		
-		// Below is an example of prompting the user to input an int
-		Scanner sc = new Scanner(System.in);
 
 		// Ask user to input name (optional)
 		System.out.println("Please enter your name: ");
 		String name = sc.nextLine();
 
 		// Rough introduction of the interface
-		System.out.println("Hi " + name " this is a mini calculator project");
+		printBar();
+		System.out.println("Hi " + name + " this is a mini calculator project");
+		printBar();
 
 		// TO make it easier to organize and later update additional operations, I'll
 		// make a map with operations and integers pairs
@@ -60,7 +60,7 @@ public class Mini_Calculator_Project {
 		String[] operations = {"ADD", "SUB", "MULT", "DIVIDE", "FACTORIAL", "FIBO", "COUNT", "EXIT"};
 		for (String s : operations) {
 			opMap.put(s, i);
-			++i
+			++i;
 		}
 
 		while (true) {
@@ -97,7 +97,9 @@ public class Mini_Calculator_Project {
 				int n2 = sc.nextInt();
 				sc.nextLine(); // Consume the leftover newline character
 
+				printBar();
 				System.out.println("The result is: " + mathematicalFunction(n1, n2, chosenOperation));
+				printBar();
 				continue;
 			}
 
@@ -108,19 +110,24 @@ public class Mini_Calculator_Project {
 				int result = factorial(n);
 
 				// Handle 13 and over factorial
+				printBar();
 				if (result < 0) {
 					System.out.println("We cannot handle numbers over 12 factorial");
+					printBar();
 					continue;
 				}
 
 				// Handle 0 or negative factorial
 				if (result == 0) {
 					System.out.println("We assume negative and 0 factorial is: 0");
+					printBar();
 					continue;
 				}
 
 				// Can now give actual result
 				System.out.println("The value of " + n + "! is: " + result);
+				printBar();
+				continue;
 			}
 
 			// FIBO or operation 5
@@ -129,23 +136,30 @@ public class Mini_Calculator_Project {
 
 				int result = fibonacci(n);
 
+				printBar();
 				// Handle if n is greater or equal to 47
 				if (result < 0) {
 					System.out.println("We cannot handle value of the 47th and over fibonacci");
+					printBar();
 					continue;
 				}
 
 				System.out.println("The value of the " + n + "th fibonacci sequence is: " + result);
+				printBar();
+				continue;
 			}
 
 			// COUNT or operation 6
 			if (chosenOperation == 6) {
 				String str = promptForString();
 
-				HashMap<Integer, Integer> map = charCount(str);
+				HashMap<Character, Integer> map = charCount(str);
 
+				printBar();
 				System.out.println("The occurences of each letter chars are: ");
 				System.out.println(map.toString());
+				printBar();
+				continue;
 			}
 		}
 	}
@@ -166,17 +180,23 @@ public class Mini_Calculator_Project {
 
 	// A message if user did not enter the keyword operations
 	public static void printWrongPrompt() {
+		printBar();
 		System.out.println("Oops, you did not enter a recongnizable keyword.");
+		printBar();
 	}
 
 	// A message thanking user for using the program
 	public static void printExit(String name) {
+		printBar();
 		System.out.println("The program is now stopping, thank you " + name + " for using the mini calculator.");
+		printBar();
 	}
 
 	// Resusable code for prompting user for a single int
 	public static int promptForInt() {
+		printBar();
 		System.out.println("Please enter int number: ");
+		printBar();
 		int n = sc.nextInt();
 		sc.nextLine(); // Consume the leftover newline character
 
@@ -185,10 +205,17 @@ public class Mini_Calculator_Project {
 
 	// Reusable code for prompting user for a string
 	public static String promptForString() {
+		printBar();
 		System.out.println("Please enter a string: ");
+		printBar();
 		String str = sc.nextLine();
 
 		return str;
+	}
+
+	// Just something to make it fancy
+	public static void printBar() {
+		System.out.println("===============================================================");
 	}
 
 	/**
@@ -197,7 +224,7 @@ public class Mini_Calculator_Project {
 	public static double mathematicalFunction(int a, int b, int operation) {
 		// This example is where a switch/case statement shines, but since we didn't
 		// introduce it, I'll stick with if statements
-		if (operation < 0 || operation >= 3) {
+		if (operation < 0 || operation > 3) {
 			return 0;
 		}
 
@@ -211,7 +238,7 @@ public class Mini_Calculator_Project {
 			return a * b;
 		}
 
-		return a / b;
+		return (double) a / b;
 	}
 
 	// Use recursion and the hashmap for caching for faster future computation
@@ -253,19 +280,20 @@ public class Mini_Calculator_Project {
 
 		if (n == 1) {
 			return 1;
+		}
 
 		int factorial = 1;
-		for (int i = 1; i < n; ++i) {
+		for (int i = 1; i <= n; ++i) {
 			factorial *= i;
 		}
 
-		return factorial
+		return factorial;
 	}
 
 	// Counts the number of each letter char in a string
-	public static HashMap<Integer, Integer> charCount(String str) {
+	public static HashMap<Character, Integer> charCount(String str) {
 		// Create a map where the Ascii value of the char is key and counter as value
-		HashMap<Integer, Integer> map = new HashMap<>();
+		HashMap<Character, Integer> map = new HashMap<>();
 
 		for (int i = 0; i < str.length(); ++i) {
 			// Grab the value of the char
@@ -277,13 +305,13 @@ public class Mini_Calculator_Project {
 			}
 
 			// If there is no counter yet, create 1 and add 1
-			if (map.get(asciiVal) == null) {
-				map.put(asciiVal, 1);
+			if (map.get((char)asciiVal) == null) {
+				map.put((char)asciiVal, 1);
 				continue;
 			}
 
 			// If counter does exist, just place back added 1
-			map.put(asciiVal, map.get(asciiVal));
+			map.put((char)asciiVal, map.get((char)asciiVal) + 1);
 		}
 
 		return map;
