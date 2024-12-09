@@ -34,6 +34,9 @@
 import java.util.Scanner;
 import java.util.HashMap;
 
+// Because this example is specifically targeted for students who already know programming
+// but not java, I'm aiming for more advanced data structures and what not, but trying to
+// limit to the scope of what we might teach. So will not include try catch and exception handling
 public class Mini_Calculator_Project {
 	private static HashMap<Integer, Integer> fiboMap = new HashMap<>();
 
@@ -43,11 +46,6 @@ public class Mini_Calculator_Project {
 		// Below is an example of prompting the user to input an int
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Please enter an int: ");
-		int n = sc.nextInt();
-		sc.nextLine(); // Consume the leftover newline character
-		System.out.println("You entered: " + n);
-
 		// Ask user to input name (optional)
 		System.out.println("Please enter your name: ");
 		String name = sc.nextLine();
@@ -55,12 +53,100 @@ public class Mini_Calculator_Project {
 		// Rough introduction of the interface
 		System.out.println("Hi " + name " this is a mini calculator project");
 
+		// TO make it easier to organize and later update additional operations, I'll
+		// make a map with operations and integers pairs
+		HashMap<String, Integer> opMap = new HashMap<>();
+		int i = 0;
 		String[] operations = {"ADD", "SUB", "MULT", "DIVIDE", "FACTORIAL", "FIBO", "COUNT", "EXIT"};
+		for (String s : operations) {
+			opMap.put(s, i);
+			++i
+		}
+
 		while (true) {
 			// Give the full list of available prompts
 			printPrompt();
 
-			
+			// Grab the chosen operation
+			String input = sc.nextLine();
+
+			// If a non operation is chosen, warn and repeat
+			if (opMap.get(input) == null) {
+				printWrongPrompt();
+				continue;
+			}
+
+			// Treat operation by its value now
+			int chosenOperation = opMap.get(input);
+
+			// NOTE: Technically I can do less hardcoding, by doing opMap.get("EXIT")
+			// which can help with scalability, but for now its ok
+			// If EXIT, or 7
+			if (chosenOperation == 7) {
+				printExit(name);
+				break;
+			}
+
+			// ADD, SUB, MULT, DIVIDE
+			if (chosenOperation >= 0 && chosenOperation <= 3) {
+				System.out.println("Please enter int number 1: ");
+				int n1 = sc.nextInt();
+				sc.nextLine(); // Consume the leftover newline character
+
+				System.out.println("Please enter int number 2: ");
+				int n2 = sc.nextInt();
+				sc.nextLine(); // Consume the leftover newline character
+
+				System.out.println("The result is: " + mathematicalFunction(n1, n2, chosenOperation));
+				continue;
+			}
+
+			// FACTORIAL or operation 4
+			if (chosenOperation == 4) {
+				int n = promptForInt();
+
+				int result = factorial(n);
+
+				// Handle 13 and over factorial
+				if (result < 0) {
+					System.out.println("We cannot handle numbers over 12 factorial");
+					continue;
+				}
+
+				// Handle 0 or negative factorial
+				if (result == 0) {
+					System.out.println("We assume negative and 0 factorial is: 0");
+					continue;
+				}
+
+				// Can now give actual result
+				System.out.println("The value of " + n + "! is: " + result);
+			}
+
+			// FIBO or operation 5
+			if (chosenOperation == 5) {
+				int n = promptForInt();
+
+				int result = fibonacci(n);
+
+				// Handle if n is greater or equal to 47
+				if (result < 0) {
+					System.out.println("We cannot handle value of the 47th and over fibonacci");
+					continue;
+				}
+
+				System.out.println("The value of the " + n + "th fibonacci sequence is: " + result);
+			}
+
+			// COUNT or operation 6
+			if (chosenOperation == 6) {
+				String str = promptForString();
+
+				HashMap<Integer, Integer> map = charCount(str);
+
+				System.out.println("The occurences of each letter chars are: ");
+				System.out.println(map.toString());
+			}
 		}
 
 	}
@@ -79,8 +165,31 @@ public class Mini_Calculator_Project {
 		System.out.println("Please only enter: \"ADD\", \"SUB\", \"MULT\", \"DIVIDE\", \"FACTORIAL\", \"FIBO\", \"COUNT\", \"EXIT\"");
 	}
 
+	// A message if user did not enter the keyword operations
 	public static void printWrongPrompt() {
 		System.out.println("Oops, you did not enter a recongnizable keyword.");
+	}
+
+	// A message thanking user for using the program
+	public static void printExit(String name) {
+		System.out.println("The program is now stopping, thank you " + name + " for using the mini calculator.");
+	}
+
+	// Resusable code for prompting user for a single int
+	public static int promptForInt() {
+		System.out.println("Please enter int number: ");
+		int n = sc.nextInt();
+		sc.nextLine(); // Consume the leftover newline character
+
+		return n;
+	}
+
+	// Reusable code for prompting user for a string
+	public static String promptForString() {
+		System.out.println("Please enter a string: ");
+		String str = sc.nextLine();
+
+		return str;
 	}
 
 	/**
