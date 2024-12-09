@@ -45,8 +45,32 @@ public class Mini_Calculator_Project_Solved {
 		System.out.println("Hi " + name + " this is a mini calculator project");
 		printBar();
 
-		
+		////////////////////////////////////////////////////
+		// Preset chosen operation
+		////////////////////////////////////////////////////
+		System.out.println("Please enter int number 1: ");
+		int n1 = sc.nextInt();
+		sc.nextLine(); // Consume the leftover newline character
 
+		System.out.println("Please enter int number 2: ");
+		int n2 = sc.nextInt();
+		sc.nextLine(); // Consume the leftover newline character
+
+		// I'll implement the divide operation, but you can choose any of the basic 4
+		double result = (double) n1 / n2;
+		printBar();
+		System.out.println("The operation of " + n1 + "/" + n2 + " is: " + result);
+		printBar();
+
+		System.out.println("Please enter int number no greater than 12: ");
+		int n = sc.nextInt();
+		sc.nextLine(); // Consume the leftover newline character
+
+		if (n == -1) {
+			System.out.println("You inputted a number larger than 12 :(");
+		}
+
+		if 
 	}
 
 	// Just something to make it fancy

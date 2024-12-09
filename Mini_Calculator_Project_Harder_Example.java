@@ -38,7 +38,7 @@ import java.util.HashMap;
 // but not java, I'm aiming for more advanced data structures and what not, but trying to
 // limit to the scope of what we might teach. So will not include try catch and exception handling
 public class Mini_Calculator_Project {
-	private static HashMap<Integer, Integer> fiboMap = new HashMap<>();
+	private static HashMap<Integer, Long> fiboMap = new HashMap<>();
 	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -107,19 +107,19 @@ public class Mini_Calculator_Project {
 			if (chosenOperation == 4) {
 				int n = promptForInt();
 
-				int result = factorial(n);
+				long result = factorial(n);
 
 				// Handle 13 and over factorial
 				printBar();
 				if (result < 0) {
-					System.out.println("We cannot handle numbers over 12 factorial");
+					System.out.println("We cannot handle numbers over 20!");
 					printBar();
 					continue;
 				}
 
 				// Handle 0 or negative factorial
 				if (result == 0) {
-					System.out.println("We assume negative and 0 factorial is: 0");
+					System.out.println("We assume negative and 0! is: 0");
 					printBar();
 					continue;
 				}
@@ -134,12 +134,12 @@ public class Mini_Calculator_Project {
 			if (chosenOperation == 5) {
 				int n = promptForInt();
 
-				int result = fibonacci(n);
+				long result = fibonacci(n);
 
 				printBar();
 				// Handle if n is greater or equal to 47
 				if (result < 0) {
-					System.out.println("We cannot handle value of the 47th and over fibonacci");
+					System.out.println("We cannot handle value of the 93th and over fibonacci");
 					printBar();
 					continue;
 				}
@@ -242,9 +242,9 @@ public class Mini_Calculator_Project {
 	}
 
 	// Use recursion and the hashmap for caching for faster future computation
-	public static int fibonacci(int n) {
-		// Return -1 for values over 46, since fibo 47 cannot be represented with ints
-		if (n > 46) {
+	public static long fibonacci(int n) {
+		// Return -1 for values over 92, since fibo 92 cannot be represented with long
+		if (n > 92) {
 			return -1;
 		}
 
@@ -259,7 +259,7 @@ public class Mini_Calculator_Project {
 		}
 
 		// Compute fibo recursively and add to map
-		int result = fibonacci(n - 1) + fibonacci(n - 2);
+		long result = fibonacci(n - 1) + fibonacci(n - 2);
 		fiboMap.put(n, result);
 		return result;
 	}
@@ -267,9 +267,9 @@ public class Mini_Calculator_Project {
 	// Multiplies using a for loop, n * (n - 1) * (n - 2) * ... * 1 = n!
 	// If n is negative, or 0 return 0
 	// If a value over 12 is given, return -1
-	public static int factorial(int n) {
-		// Return -1 since 13 and above factorial gives incorrect values with int
-		if (n > 12) {
+	public static long factorial(int n) {
+		// Return -1 since 21 and above factorial gives incorrect values with long
+		if (n > 20) {
 			return -1;
 		}
 
@@ -282,7 +282,7 @@ public class Mini_Calculator_Project {
 			return 1;
 		}
 
-		int factorial = 1;
+		long factorial = 1;
 		for (int i = 1; i <= n; ++i) {
 			factorial *= i;
 		}
